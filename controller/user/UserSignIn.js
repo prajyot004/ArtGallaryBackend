@@ -1,8 +1,9 @@
 const bcrypt = require('bcryptjs')
 const userModel = require('../../models/userModel')
 const jwt = require('jsonwebtoken')
-
+const cookie = require('js-cookie')
 async function userSignInContoller(req,res){
+    
     try {
         const {email, password} = req.body
         if(!email){
@@ -27,8 +28,10 @@ async function userSignInContoller(req,res){
             const token = jwt.sign(tokenData, process.env.TOKEN_SECRET_KEY, {expiresIn: 60 * 60 * 8});
             const tokenOption = {
                 httpOnly : true,
-                secure: true
+                secure: process.env.NODE_ENV === 'production',
+                domain: 'https://art-gallery-one-eta.vercel.app/'
             }
+            
             res.cookie("token", token, tokenOption).json({
                 message: "Login successfully",
                 data : token,

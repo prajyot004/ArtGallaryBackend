@@ -2,6 +2,7 @@ const addToCartModel = require("../../models/cartProduct.")
 
 const addToCartController = async(req, res)=>{
     try{
+        console.log("req -->" , req)
         const { productId } = req?.body
         const currentUser = req.user.id
 
