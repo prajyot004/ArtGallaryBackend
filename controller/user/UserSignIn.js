@@ -30,7 +30,6 @@ async function userSignInContoller(req, res) {
       const tokenOption = {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        domain: "https://art-gallery-one-eta.vercel.app",
         path: "/", // Ensure the cookie is available on all routes
         sameSite: "lax",
       };
