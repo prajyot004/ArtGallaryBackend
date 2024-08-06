@@ -29,6 +29,8 @@ async function userSignInContoller(req, res) {
       const tokenOption = {
         httpOnly: true,
         secure: true,
+        path: '/',
+        domain: 'art-gallery-one-eta.vercel.app',
         sameSite: "lax",
       };
 
