@@ -31,6 +31,9 @@ async function userSignInContoller(req,res){
                 secure: true,
                 sameSite: 'lax',
             }
+
+            console.log("Generated Token:", token);
+            console.log("Cookie Options:", tokenOption);
             
             res.cookie("token", token, tokenOption).json({
                 message: "Login successfully",
