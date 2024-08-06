@@ -1,7 +1,6 @@
 const bcrypt = require("bcryptjs");
 const userModel = require("../../models/userModel");
 const jwt = require("jsonwebtoken");
-const cookie = require("js-cookie");
 async function userSignInContoller(req, res) {
   try {
     const { email, password } = req.body;
@@ -35,12 +34,12 @@ async function userSignInContoller(req, res) {
 
       console.log("Generated Token:", token);
       console.log("Cookie Options:", tokenOption);
-      document.cookie = "username=John Doe";
       res.cookie("token", token, tokenOption).json({
         message: "Login successfully",
         data: token,
         success: true,
         error: false,
+        token: token,
       });
     } else {
       throw new Error("Please check password");
